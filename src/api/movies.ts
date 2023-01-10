@@ -7,3 +7,10 @@ export const popularMoviesQuery = async () => {
   );
   return data;
 };
+
+export const topRatedMoviesQuery = async () => {
+  const { data } = await baseAPI.get<{ results: Movie[] | null }>(
+    "movie/top_rated"
+  );
+  return data;
+};

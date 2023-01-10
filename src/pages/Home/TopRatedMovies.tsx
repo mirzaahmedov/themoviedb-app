@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { popularMoviesQuery } from "../../api/movies";
+import { topRatedMoviesQuery } from "../../api/movies";
 import { useSave } from "../../context/saved";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -18,8 +18,8 @@ const Headline = styled.h3`
   text-transform: uppercase;
 `;
 
-const PopularMovies = () => {
-  const { data, isLoading } = useQuery(["movie/popular"], popularMoviesQuery);
+const TopRatedMovies = () => {
+  const { data, isLoading } = useQuery(["movie/top"], topRatedMoviesQuery);
   const { saved, save, unsave } = useSave();
 
   return (
@@ -40,7 +40,7 @@ const PopularMovies = () => {
       ) : null} */}
       {data && Array.isArray(data?.results) ? (
         <Section>
-          <Headline>Popular Movies</Headline>
+          <Headline>Top Rated Movies</Headline>
           <Swiper
             spaceBetween={20}
             slidesPerView={7}
@@ -64,4 +64,4 @@ const PopularMovies = () => {
   );
 };
 
-export default PopularMovies;
+export default TopRatedMovies;
