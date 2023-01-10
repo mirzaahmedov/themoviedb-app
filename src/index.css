@@ -1,0 +1,26 @@
+:root {
+  --color-primary: #673ab7;
+  --text-secondary: #757575;
+}
+
+*::before,
+*,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+}
