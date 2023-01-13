@@ -1,4 +1,5 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
 import { Movie } from "../types";
@@ -73,6 +74,23 @@ type Props = {
 };
 
 const MovieItem = ({ movie, saved, save, unsave }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e: MouseEvent) => {
+    const { x, y, width, height } = (
+      e.target as HTMLElement
+    ).getBoundingClientRect();
+    navigate(`movie/${movie.id}`, {
+      state: {
+        x,
+        y,
+        width,
+        height,
+        image: movie.poster_path,
+        title: movie.title,
+      },
+    });
+  };
   const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       save({
@@ -88,7 +106,7 @@ const MovieItem = ({ movie, saved, save, unsave }: Props) => {
 
   return (
     <Container>
-      <Poster src={movie.poster_path} alt={movie.title} />
+      <Poster src={movie.poster_path} alt={movie.title} onClick={handleClick} />
       <Info>
         <Score>{movie.vote_average}</Score>
         <Details>
